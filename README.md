@@ -4,19 +4,21 @@ Automated pipeline that fetches daily stock prices from Alpha Vantage API and st
 
 ## Architecture
 
+```
 [Alpha Vantage API]
-│
-▼
+       │
+       ▼
 [Airflow DAG - stock_pipeline]
-│
-├── fetch_stock_data (with 3 retries, exponential backoff)
-│
-└── insert_data_to_db (idempotent upsert)
-│
-▼
+       │
+       ├── fetch_stock_data (retries + backoff)
+       │
+       └── insert_data_to_db (idempotent upsert)
+       │
+       ▼
 [PostgreSQL - stock_prices table]
-│
-└── on_failure → Telegram alert
+       │
+       └── on_failure → Telegram alert 🚨
+```
 
 ## Tech Stack
 
