@@ -8,6 +8,19 @@ import time
 from dotenv import load_dotenv
 from pathlib import Path
 
+def send_telegram_alert(message):
+    """Send a Telegram message when the pipeline fails."""
+    token = os.getenv("TELEGRAM_BOT_TOKEN")
+    chat_id = os.getenv("TELEGRAM_CHAT_ID")
+    if not token or not chat_id:
+        print("Telegram credentials not set. Skipping alert.")
+        return
+    url = f"https://api.telegram.org/bot{token}/sendMessage"
+    try:
+        requests.post(url, json={"chat_id": chat_id, "text": f"🚨 {message}"})
+    except Exception as e:
+        print(f"Failed to send Telegram alert: {e}")
+
 # --- Configuration ---
 STOCKS = ["AAPL", "GOOGL", "MSFT"]
 BASE_URL = "https://www.alphavantage.co/query"
@@ -94,8 +107,13 @@ def insert_data_to_db(data, symbol):
 default_args = {
     "owner": "Lynixt",
     "retries": 2,
-    "retry_delay": timedelta(minutes=5),
+    "retry_delay": timedelta(seconds=10),
     "start_date": datetime(2026, 7, 17),
+    "on_failure_callback": lambda context: send_telegram_alert(
+        f"DAG {context['dag'].dag_id} failed!\n"
+        f"Task: {context['task_instance'].task_id}\n"
+        f"Error: {context['exception']}"
+    ),
 }
 
 # --- DAG ---
@@ -131,3 +149,23 @@ with DAG(
     )
 
     fetch_data >> insert_data
+
+# Fail TESTING
+# with DAG(
+#     dag_id="stock_pipeline",
+#     default_args=default_args,
+#     description="Fetch daily stock prices and load into PostgreSQL",
+#     schedule_interval="0 8 * * 1-5",
+#     catchup=False,
+#     tags=["stocks", "beginner"],
+# ) as dag:
+
+#     def task_fail_on_purpose(**context):
+#         raise ValueError("Test failure - Telegram alert check")
+
+#     test_fail = PythonOperator(
+#         task_id="test_telegram_alert",
+#         python_callable=task_fail_on_purpose,
+#     )
+
+#     test_fail

@@ -1,0 +1,12 @@
+# Secrets
+.env
+
+# Python
+__pycache__/
+*.pyc
+
+# Docker
+logs/
+
+# IDE
+.vscode/
