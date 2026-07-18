@@ -62,6 +62,16 @@ Automated pipeline that fetches daily stock prices from Alpha Vantage API and st
 - Debugging containerized pipelines
 - Git version control and project documentation
 
+## How This Project Started
+
+I like factory games. I like automating things. One day I wondered: _"Can I make money with this?"_
+
+Turns out, yes. Data engineering is just building factories for data — miners, conveyor belts, storage containers, the whole thing. The same mindset that optimizes a Satisfactory production line applies directly to building data pipelines.
+
+I have a CS degree and previous QA experience, but I'd never touched data engineering until now. Two years of career uncertainty.
+
+The factory is open.
+
 ## Project Status
 
 Project 1 of 3 for data engineering portfolio. Working and actively maintained.
