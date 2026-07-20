@@ -41,8 +41,10 @@ Automated pipeline that fetches daily stock prices from Alpha Vantage API and st
    TELEGRAM_CHAT_ID=your_chat_id_here
    ```
 
-3. Start the services
+3. Start the services in terminal
+   ```
    docker compose up -d --build
+   ```
 
 4. Open Airflow at http://localhost:8080 (username: admin, password: admin)
 
