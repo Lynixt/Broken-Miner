@@ -34,10 +34,12 @@ Automated pipeline that fetches daily stock prices from Alpha Vantage API and st
    git clone https://github.com/Lynixt/Broken-Miner.git
    cd broken-miner
 
-2. Create a `.env` file with:
+2. Create a `.env` file in the project root with:
+   ```
    ALPHA_VANTAGE_API_KEY=your_key_here
    TELEGRAM_BOT_TOKEN=your_token_here
    TELEGRAM_CHAT_ID=your_chat_id_here
+   ```
 
 3. Start the services
    docker compose up -d --build
