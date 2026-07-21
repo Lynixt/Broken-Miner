@@ -76,6 +76,12 @@ I have a CS degree and previous QA experience, but I'd never touched data engine
 
 The factory is open.
 
-## Project Status
+## Portfolio
 
-Project 1 of 3 for data engineering portfolio. Working and actively maintained.
+This is Project 1 of 3 in my data engineering portfolio.
+
+- **Project 1: Broken Miner** - Airflow, Docker, PostgreSQL, Telegram alerts
+- [Project 2: Superstore Warehouse](https://github.com/Lynixt/superstore-warehouse) - dbt, dimensional modeling, CI/CD
+- [Project 3: Wiki Stream](https://github.com/Lynixt/wiki-stream) - Kafka, Databricks, real-time streaming
+
+[📁 View Full Portfolio](https://github.com/Lynixt/data-engineering-portfolio)
